@@ -1,0 +1,96 @@
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"><img src="../assets/images/spotify-white-logo.png" style="width: 180px;"></a>
+  <input class="form-control form-control-dark w-100" type="text" placeholder="Rechercher un album depuis Spotify..." aria-label="Search" [(ngModel)] = "searchQuery" name="searchQuery" (keyup)="searchSong()" >
+
+
+
+  <ul class="navbar-nav px-3">
+    <li class="nav-item text-nowrap">
+      <!-- <a class="nav-link" href="#" (click)="abrirNuevaPlaylist(modalNuevaPlaylist)">Nueva playlist</a> -->
+      <a class="nav-link" href="#" (click)="abrirModalUsuarios(modalUsuarios)">Sélectionner Utilisateur</a>
+    </li>
+  </ul>
+
+  <div *ngIf="searchResult" class="results">
+
+    <div *ngFor="let result of searchResult">
+      <div class="row " >
+  
+        <div class="col-md-12">
+          
+          <div class="searchItem well">
+            <div class="imgItem">
+                <img height="50px" src={{result.images[0].url}}/>
+            </div>
+            <div class="descriptionItem">
+            <h4>{{result.name}}</h4>
+            <div>
+              <strong>Sorti le : </strong>
+              <span>{{result.release_date}}</span>
+              
+            </div>
+            <div>
+              <strong>Par : </strong>
+              <span>{{result.artists[0].name}}</span>
+            </div>
+            <div>
+              <strong>Titres : </strong>
+              <span>{{result.total_tracks}}</span>
+            </div>
+            <div>
+              <button class="btn btn-outline-success" (click)="setToLibrary(result)">Ajouter à ma bibliothèque</button>
+              
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+
+
+</nav>
+
+<!-- Ventana modal de nueva playlist -->
+<ng-template #modalNuevaPlaylist let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Ajout d'un album à la bibliothèque</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Fermer')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    
+    <input class="form-control" type="text" placeholder="Ajouter un tag ?">
+  </div>
+  <div class="modal-footer">
+
+    <button type="button" class="btn btn-outline-success" (click)="modal.close('Boton Cerrar')">Annuler</button>
+  </div>
+</ng-template>
+
+
+<!-- Seleccionar usuario -->
+<ng-template #modalUsuarios let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Sélectionner Utilisateur</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Fermer')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <select class="form-control" [(ngModel)]="userSelected">
+      <option>Sélectionner Utilisateur
+      </option>
+      <option *ngFor="let user of Users" [ngValue]="user._id">{{user.userName}}</option>
+    </select>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-success" (click)="selectUser()">Valider</button>
+    <button type="button" class="btn btn-outline-success" (click)="modal.close('Boton Cerrar')">Fermer</button>
+  </div>
+
+
+  
+</ng-template>

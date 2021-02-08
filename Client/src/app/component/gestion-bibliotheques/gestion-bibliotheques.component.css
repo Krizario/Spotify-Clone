@@ -1,0 +1,10 @@
+.list {
+    text-align: left;
+    max-width: 750px;
+    margin: auto;
+  }
+
+  .list-group-item {
+      background: transparent !important;
+      cursor: pointer;
+  }

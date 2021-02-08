@@ -1,0 +1,43 @@
+<div class="list row">
+    
+
+    <div class="col-md-6">
+      <h4>Liste de mes Albums</h4>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let album of mesAlbums; let i = index"
+          [class.active]="i == currentIndex"
+          (click)="setActiveAlbum(album, i)"
+        >
+        {{album.albumTitle}}
+        </li>
+      </ul>
+  
+    </div>
+    <div class="col-md-6">
+        <div *ngIf="currentAlbum">
+          <h4>Album</h4>
+          <div>
+            <label><strong>Titre:</strong></label> {{ currentAlbum.albumTitle }}
+          </div>
+          <!-- <div>
+            <label><strong>Description:</strong></label>
+            {{ currentTutorial.description }}
+          </div>
+          <div>
+            <label><strong>Status:</strong></label>
+            {{ currentTutorial.published ? "Published" : "Pending" }}
+          </div> -->
+    
+          <a class="badge badge-warning" routerLink="/gestion/{{this.user}}/album/{{ currentAlbum._id }}">
+            Editer
+          </a>
+        </div>
+    
+        <div *ngIf="!currentAlbum">
+          <br />
+          <p>Merci de choisir un album...</p>
+        </div>
+      </div>
+    </div>

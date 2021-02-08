@@ -1,0 +1,27 @@
+<div *ngIf="existAlbum; else noUser">
+<div class="row" >
+<h2>Ma Bibliothèque</h2>
+<a   routerLink="/gestion/5fdcd473ed1d89ed25111073" class="d-flex align-items-center text-muted btn btn-outline-success" href="#">
+    <span data-feather="plus-circle">Gestion</span>
+  </a>
+</div>
+
+<div class="row">
+    <br />
+    <div class="col-md-4" *ngFor="let album of mesAlbums">
+        <div   *ngIf="album">
+        <img src="{{album.albumImage}}" height="300px"/>
+    <div>
+        <h3>{{album.albumTitle}}</h3>
+        <h4>Interprété par : {{album.albumArtist}}<b></b></h4>
+    </div>
+</div>
+
+    </div>
+</div>
+</div>
+
+
+<ng-template #noUser>
+ Merci de vous identifier !
+  </ng-template>

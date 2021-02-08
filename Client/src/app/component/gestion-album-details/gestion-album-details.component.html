@@ -1,0 +1,102 @@
+<div *ngIf="currentAlbum" class="edit-form">
+    <h4>Gestion d'un album</h4>
+    <form>
+      <div class="form-group">
+        <label for="title">ID Spotify</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          [(ngModel)]="currentAlbum.albumID"
+          name="albumID"
+          readonly
+        />
+      </div>
+      <div class="form-group">
+        <label for="title">Album</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          [(ngModel)]="currentAlbum.albumTitle"
+          name="albumTitle"
+          readonly
+        />
+      </div>
+      <div class="form-group">
+        <label for="title">Artiste</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          [(ngModel)]="currentAlbum.albumArtist"
+          name="albumArtist"
+          readonly
+        />
+      </div>
+      <div class="form-group">
+        <label for="title">Date de sortie</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          [(ngModel)]="currentAlbum.albumReleaseDate"
+          name="albumReleaseDate"
+          readonly
+        />
+      </div>
+      <div class="form-group">
+        <label for="title">Image</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          [(ngModel)]="currentAlbum.albumImage"
+          name="albumImage"
+          readonly
+        />
+      </div>
+      <div class="form-group">
+        <label for="title">Nombre Titres</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          [(ngModel)]="currentAlbum.albumTitles"
+          name="albumTitles"
+          readonly
+        />
+      </div>
+      <div class="form-group">
+        <label for="title">Favori</label>
+        <input
+          type="checkbox"
+          class="form-control"
+          id="title"
+          [(ngModel)]="currentAlbum.albumFavori"
+          name="favori"
+        readonly
+        />
+      </div>
+      
+      
+    </form>
+  
+   
+  
+    <button class="text-muted btn btn-outline-danger" (click)="removeAlbum()">
+      Supprimer de la liste
+    </button>
+  
+
+    <button type="submit" class="text-muted btn btn-outline-warning" (click)="setToFavori()">
+      Ajouter comme favori
+    </button>
+
+    <p>{{ message }}</p>
+  </div>
+  
+  <div *ngIf="!currentAlbum">
+    <br />
+    <p>Album inexistant...</p>
+  </div>
